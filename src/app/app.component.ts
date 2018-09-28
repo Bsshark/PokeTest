@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeServiceService } from '../services/poke-service.service';
 import { Pokemon } from '../models/Pokemon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,10 @@ import { Pokemon } from '../models/Pokemon';
 export class AppComponent implements OnInit {
 
   public pokemon: Pokemon;
-
+  public name: string;
   constructor(private pokeService: PokeServiceService) {
 
   }
-  title = 'Pokemon';
   ngOnInit(): void {
 
     this.pokeService.getPokemonById(802).subscribe((data => {

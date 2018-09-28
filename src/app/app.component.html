@@ -2,8 +2,9 @@
 <div style="text-align:center">
   <h1>
     Bienvenido al buscador pokémon!
-    <input type="text">
+
     <div *ngIf="pokemon" class="ui-g ui-g-12">
+      <input [(ngModel)]="pokemon.name" name="inputPokemon">
       <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}sprite" />
       Nombre: {{ pokemon.name | capitalize }}
 
