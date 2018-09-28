@@ -12,18 +12,25 @@ import { HttpHeaders } from '@angular/common/http';
 export class PokeServiceService {
 
   URL: string;
+  // let headers = new Headers({'Content-Type': 'application/json'});
+  // let params: URLSearchParams = new URLSearchParams();
 
 
 
   constructor(
     private http: HttpClient
   ) {
-    this.URL = 'https://pokeapi.co:443/api/v2/pokemon/';
+    this.URL = 'https://pokeapi.co/api/v2/pokemon/';
+
   }
 
+  getPokemonById(id: number): Observable<Pokemon> {
+    // params.set('name', name);
+    return this.http.get<Pokemon>(this.URL + id);
+  }
 
-
-  getPokemon(name: string): Observable<Pokemon> {
+  getPokemonByName(name: string): Observable<Pokemon> {
+    // params.set('name', name);
     return this.http.get<Pokemon>(this.URL + name.toLowerCase());
   }
 }
