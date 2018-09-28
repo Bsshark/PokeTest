@@ -20,7 +20,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getPokemon('Charizard').subscribe((data => {
       this.pokemonName = data.name;
-    }));
+    },
+      error => {
+        console.log(error);
+      }));
 
     console.log(this.pokemonName);
 
