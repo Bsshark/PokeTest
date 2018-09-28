@@ -18,7 +18,7 @@ export class PokeServiceService {
   constructor(
     private http: HttpClient
   ) {
-    this.URL = 'https://pokeapi.co/api/v2/pokemon/';
+    this.URL = 'https://pokeapi.co:443/api/v2/pokemon/';
   }
 
 
