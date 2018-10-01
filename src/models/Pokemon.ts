@@ -1,4 +1,5 @@
 import { Sprite } from 'src/models/Sprite';
+import { PokemonSpecies } from './Pokemon_Species';
 
 export class Pokemon {
     id: number;
@@ -6,5 +7,6 @@ export class Pokemon {
     weight: number;
     height: number;
     sprites: Sprite;
+    pokemonSpecies: PokemonSpecies;
 
 }

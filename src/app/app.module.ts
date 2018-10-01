@@ -6,6 +6,15 @@ import { AppComponent } from './app.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { FormsModule } from '@angular/forms';
 
+import { AccordionModule } from 'primeng/accordion';
+import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +23,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AccordionModule,
+    PanelModule,
+    ButtonModule,
+    RadioButtonModule,
+    InputTextModule,
+    CardModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

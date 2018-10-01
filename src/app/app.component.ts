@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeServiceService } from '../services/poke-service.service';
 import { Pokemon } from '../models/Pokemon';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,12 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.pokeService.getPokemonById(802).subscribe((data => {
+    this.pokeService.getPokemonById(2).subscribe((data => {
       this.pokemon = data;
+    }));
+
+    this.pokeService.getPokedexEntryById(2).subscribe((data => {
+      this.pokemon.pokemonSpecies = data;
     }));
 
     // console.log(this.pokemonName);
