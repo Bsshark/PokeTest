@@ -21,14 +21,16 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.pokemon = new Pokemon();
+  }
 
-    this.pokeService.getPokemonByName(name).subscribe((data => {
+  onSearchChange(searchValue: string) {
+    this.pokeService.getPokemonByName(searchValue).subscribe((data => {
       this.pokemon = data;
       this.pokeService.getPokedexEntryById(this.pokemon.id).subscribe((dataPokedex => {
         this.pokemon.pokemonSpecies = dataPokedex;
       }));
     }));
-
   }
 }
 

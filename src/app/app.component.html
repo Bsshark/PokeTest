@@ -10,7 +10,7 @@
       <div *ngIf="pokemon" class="ui-g-12">
         <div class="ui-g-12">
           <div class="ui-g-2"></div>
-          <input class="ui-g-8" pInputText type="text" [(ngModel)]="name" name="inputPokemon" />
+          <input class="ui-g-8" pInputText type="text" #pokeInput [(ngModel)]="name" name="inputPokemon" (keyup.enter)="onSearchChange(pokeInput.value)"/>
         </div>
         <div class="ui-g-12 pokeCard" *ngIf="pokemon.pokemonSpecies">
           <div class="ui-g-12 pokeName">{{ pokemon.name | capitalize }}</div>
@@ -27,3 +27,4 @@
 
     </div>
   </div>
+</div>
