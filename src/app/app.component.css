@@ -1,0 +1,12 @@
+.pokeCard {
+  text-transform: none;
+  background: #B5D2AA;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.pokeData {
+  background-color: steelblue;
+  color: white;
+  animation: backwards 0s;
+
+}

@@ -26,7 +26,6 @@ export class PokeServiceService {
     this.URL_SPECIES = 'https://pokeapi.co/api/v2/pokemon-species/';
 
   }
-
   getPokemonById(id: number): Observable<Pokemon> {
     // params.set('name', name);
     return this.http.get<Pokemon>(this.URL_POKEMON + id);

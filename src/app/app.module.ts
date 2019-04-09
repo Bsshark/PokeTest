@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -30,7 +32,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RadioButtonModule,
     InputTextModule,
     CardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OrganizationChartModule,
+    FieldsetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

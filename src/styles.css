@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  background-color: #8AB27B;
+}
+
+.pokeCard {
+  background-color: #B5D2AA;
+}
+
+.pokeName {
+  font: bolder;
+}
