@@ -16,7 +16,7 @@
           <div class="ui-g-12 pokeName">{{ pokemon.name | capitalize }}</div>
           <div class="ui-g-12">
             <div class="ui-g-4">
-              <p>{{ pokemon.pokemonSpecies.flavor_text_entries[3].flavor_text }}</p>
+              <p>{{ langDesc.flavor_text }}</p>
             </div>
             <img [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
           </div>
