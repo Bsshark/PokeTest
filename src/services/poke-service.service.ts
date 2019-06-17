@@ -27,7 +27,6 @@ export class PokeServiceService {
 
   }
   getPokemonById(id: number): Observable<Pokemon> {
-    // params.set('name', name);
     return this.http.get<Pokemon>(this.URL_POKEMON + id);
   }
 
@@ -36,7 +35,6 @@ export class PokeServiceService {
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    // params.set('name', name);
     return this.http.get<Pokemon>(this.URL_POKEMON + name.toLowerCase());
   }
 }
