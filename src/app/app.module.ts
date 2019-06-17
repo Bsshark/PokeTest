@@ -15,12 +15,19 @@ import { CardModule } from 'primeng/card';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
+import { PokedexDataComponent } from './components/pokedex-data/pokedex-data.component';
+import { PokeDataComponent } from './components/poke-data/poke-data.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    NavigationMenuComponent,
+    PokedexDataComponent,
+    PokeDataComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CardModule,
     BrowserAnimationsModule,
     OrganizationChartModule,
-    FieldsetModule
+    FieldsetModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
