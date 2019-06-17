@@ -15,5 +15,8 @@ import {FlavorTextEntries} from '../models/Flavor_Text_Entries';
 export class AppComponent implements OnInit {
 
 
+  ngOnInit(): void {
+  }
+
 }
 

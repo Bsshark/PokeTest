@@ -8,5 +8,5 @@ export class Pokemon {
     height: number;
     sprites: Sprite;
     pokemonSpecies: PokemonSpecies;
-
+    votes: number;
 }

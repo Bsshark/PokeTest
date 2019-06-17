@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { FormsModule } from '@angular/forms';
+import { ChartModule } from 'primeng/chart';
 
 import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
@@ -42,7 +43,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     OrganizationChartModule,
     FieldsetModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

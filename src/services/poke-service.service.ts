@@ -14,6 +14,7 @@ export class PokeServiceService {
 
   URL_POKEMON: string;
   URL_SPECIES: string;
+  LOCAL_DATA: string;
   // let headers = new Headers({'Content-Type': 'application/json'});
   // let params: URLSearchParams = new URLSearchParams();
 
@@ -24,6 +25,7 @@ export class PokeServiceService {
   ) {
     this.URL_POKEMON = 'https://pokeapi.co/api/v2/pokemon/';
     this.URL_SPECIES = 'https://pokeapi.co/api/v2/pokemon-species/';
+    this.LOCAL_DATA = '../../assets/Files/PokeData.txt';
 
   }
   getPokemonById(id: number): Observable<Pokemon> {
@@ -36,5 +38,13 @@ export class PokeServiceService {
 
   getPokemonByName(name: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(this.URL_POKEMON + name.toLowerCase());
+  }
+
+  getLocalData(): Observable<string> {
+    let dataFile;
+    this.http.get(this.LOCAL_DATA, {responseType: 'text'}).subscribe(data => {
+      dataFile = data.toString().split('\n');
+    });
+    return dataFile;
   }
 }
