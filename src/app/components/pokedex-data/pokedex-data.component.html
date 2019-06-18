@@ -2,7 +2,7 @@
 
 </div>
 <div class="ui-g-10">
-  <h1> Bienvenido al buscador pokémon!</h1>
+  <h1> ¡Bienvenido al buscador pokémon!</h1>
 
   <div *ngIf="pokemon" class="ui-g-12">
     <div class="ui-g-12">
@@ -10,12 +10,15 @@
       <input class="ui-g-8" pInputText type="text" #pokeInput [(ngModel)]="name" name="inputPokemon" (keyup.enter)="onSearchChange(pokeInput.value)"/>
     </div>
     <div class="ui-g-12 pokeCard" *ngIf="pokemon.pokemonSpecies">
-      <div class="ui-g-12 pokeName">{{ pokemon.name | capitalize }}</div>
+      <div class="ui-g-12 pokeName"><h2>{{ pokemon.name | capitalize }}</h2></div>
+
       <div class="ui-g-12">
-        <div class="ui-g-4">
+        <div class="ui-g-6 pokeDesc">
           <p>{{ langDesc.flavor_text }}</p>
         </div>
-        <img [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
+        <div class="ui-g-6">
+          <img class="pokeSprite" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
+        </div>
       </div>
     </div>
   </div>

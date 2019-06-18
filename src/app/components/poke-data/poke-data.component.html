@@ -6,7 +6,20 @@
     <div class="ui-g-10">
       <p class="text-justify">La información aquí recopìlada se basa en una encuesta realizada en reddit con la participación de 52000 personas. Gracias a los datos recopilados por u/mamamia1001</p>
     </div>
-
+  </div>
+  <div class="ui-g-12">
+    <p-dataView [value]="pokemonList">
+      <ng-template let-pokemon pTemplate="listItem">
+        <div>
+          {{pokemon.name}}
+        </div>
+      </ng-template>
+      <ng-template let-pokemon pTemplate="gridItem">
+        <div class="ui-g-12 ui-md-3">
+          <img class="pokeSprite" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
+        </div>
+      </ng-template>
+    </p-dataView>
   </div>
 </div>
 <div class="ui-g-1"></div>

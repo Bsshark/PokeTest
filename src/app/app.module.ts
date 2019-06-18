@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
+import { DataViewModule } from 'primeng/dataview';
 
 import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
@@ -44,7 +45,8 @@ import { AppRoutingModule } from './app-routing.module';
     OrganizationChartModule,
     FieldsetModule,
     AppRoutingModule,
-    ChartModule
+    ChartModule,
+    DataViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

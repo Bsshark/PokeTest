@@ -10,36 +10,45 @@ import {Pokemon} from '../../../models/Pokemon';
   styleUrls: ['./poke-data.component.css']
 })
 export class PokeDataComponent implements OnInit {
-
+  public pokemonList: Pokemon[];
   public allData: string;
+
+
   constructor(
     private http: HttpClient,
     private pokeService: PokeServiceService
   ) {
-
+    this.pokemonList = [];
   }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  loadData(){
+  loadData() {
+    let pokemonText: string[];
     this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'}).subscribe(data => {
-      console.log(data.toString().split('\n'));
-      for(const pokemonText in data.toString().split('\n')){
-        const pokemonData = pokemonText.split(',');
-        const pokemon: Pokemon;
+      pokemonText = data.toString().split('\n');
+      const self = this;
+      pokemonText.forEach(function(pokemonLine) {
+        const pokeStats = pokemonLine.split(',');
+          let pokemon: Pokemon;
+          const name = pokeStats[0];
+          if (name !== 'Pokemon') {
+            const votes = pokeStats[1];
 
-        this.pokeService.getPokemonByName(pokemonData[0]).subscribe(data => {
-          console.log(data);
-        });
+            const rank = pokeStats[2];
 
-      }
+            self.pokeService.getPokemonByName(name).subscribe((result => {
+              pokemon = result;
+              pokemon.votes = +votes;
+              pokemon.rank = +rank;
+              self.pokemonList.push(pokemon);
+              console.log(pokemon.id + " : " + pokemon.name);
+            }));
+          }
+      });
     });
-    /*
-    for(let pokemon of this.allData){
-      console.log(pokemon);
-    }*/
   }
 
 
