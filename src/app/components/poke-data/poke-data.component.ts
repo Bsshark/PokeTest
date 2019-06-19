@@ -12,6 +12,9 @@ import {Pokemon} from '../../../models/Pokemon';
 export class PokeDataComponent implements OnInit {
   public pokemonList: Pokemon[];
   public allData: string;
+  public nPokeRows: number;
+  public pokemonFrom: number;
+  public pokemonTo: number;
 
 
   constructor(
@@ -19,18 +22,26 @@ export class PokeDataComponent implements OnInit {
     private pokeService: PokeServiceService
   ) {
     this.pokemonList = [];
+    this.nPokeRows = 8;
+    this.pokemonFrom = 0;
+    this.pokemonTo = 20;
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadPokemons();
   }
 
-  loadData() {
+  loadData(event) {
+
+  }
+  loadPokemons() {
     let pokemonText: string[];
-    this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'}).subscribe(data => {
+    this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'})
+
+      .subscribe(data => {
       pokemonText = data.toString().split('\n');
       const self = this;
-      pokemonText.forEach(function(pokemonLine) {
+      pokemonText.slice(this.pokemonFrom, (this.pokemonTo + 1)).forEach(function(pokemonLine) {
         const pokeStats = pokemonLine.split(',');
           let pokemon: Pokemon;
           const name = pokeStats[0];
@@ -43,11 +54,12 @@ export class PokeDataComponent implements OnInit {
               pokemon = result;
               pokemon.votes = +votes;
               pokemon.rank = +rank;
-              self.pokemonList.push(pokemon);
-              console.log(pokemon.id + " : " + pokemon.name);
+              self.pokemonList = [...self.pokemonList, pokemon];
+              console.log(self.pokemonList.length);
             }));
           }
       });
+
     });
   }
 

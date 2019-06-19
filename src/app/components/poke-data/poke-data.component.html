@@ -8,10 +8,13 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <p-dataView [value]="pokemonList">
+    <p-dataView [value]="pokemonList" [paginator]="true" [rows]="nPokeRows" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="811" [pageLinks]="5" [alwaysShowPaginator]="true">
+      <p-header>
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+      </p-header>
       <ng-template let-pokemon pTemplate="listItem">
         <div>
-          {{pokemon.name}}
+          {{pokemon.name | capitalize}}
         </div>
       </ng-template>
       <ng-template let-pokemon pTemplate="gridItem">

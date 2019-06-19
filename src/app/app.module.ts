@@ -7,6 +7,7 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { DataViewModule } from 'primeng/dataview';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
@@ -21,6 +22,7 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { PokedexDataComponent } from './components/pokedex-data/pokedex-data.component';
 import { PokeDataComponent } from './components/poke-data/poke-data.component';
 import { AppRoutingModule } from './app-routing.module';
+
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AppRoutingModule } from './app-routing.module';
     FieldsetModule,
     AppRoutingModule,
     ChartModule,
-    DataViewModule
+    DataViewModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
