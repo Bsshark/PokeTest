@@ -32,12 +32,35 @@ export class PokeDataComponent implements OnInit {
   }
 
   loadData(event) {
+    let pokemonText: string[];
+    this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'})
+      .subscribe(data => {
+        pokemonText = data.toString().split('\n');
+        const self = this;
+        pokemonText.slice(this.pokemonFrom, (this.pokemonTo + 1)).forEach(function(pokemonLine) {
+          const pokeStats = pokemonLine.split(',');
+          let pokemon: Pokemon;
+          const name = pokeStats[0];
+          if (name !== 'Pokemon') {
+            const votes = pokeStats[1];
 
+            const rank = pokeStats[2];
+
+            self.pokeService.getPokemonByName(name).subscribe((result => {
+              pokemon = result;
+              pokemon.votes = +votes;
+              pokemon.rank = +rank;
+              self.pokemonList = [...self.pokemonList, pokemon];
+              console.log(self.pokemonList.length);
+            }));
+          }
+        });
+
+      });
   }
   loadPokemons() {
     let pokemonText: string[];
     this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'})
-
       .subscribe(data => {
       pokemonText = data.toString().split('\n');
       const self = this;

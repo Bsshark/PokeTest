@@ -18,4 +18,8 @@ export class NavigationMenuComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
+  cargarDatosPokemon() {
+
+  }
+
 }
