@@ -14,6 +14,7 @@ export class PokeServiceService {
   URL_POKEMON: string;
   URL_SPECIES: string;
   LOCAL_DATA: string;
+  URL_ALL_POKEMON: string;
   // let headers = new Headers({'Content-Type': 'application/json'});
   // let params: URLSearchParams = new URLSearchParams();
 
@@ -25,6 +26,7 @@ export class PokeServiceService {
     this.URL_POKEMON = 'https://pokeapi.co/api/v2/pokemon/';
     this.URL_SPECIES = 'https://pokeapi.co/api/v2/pokemon-species/';
     this.LOCAL_DATA = '../../assets/Files/PokeData.txt';
+    this.URL_ALL_POKEMON = 'http://localhost:8080/api/pokemon/all';
   }
   getPokemonById(id: number): Observable<Pokemon> {
     return this.http.get<Pokemon>(this.URL_POKEMON + id);
@@ -41,6 +43,10 @@ export class PokeServiceService {
 
   getPokemonFromTo(from: number, to: number): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(this.URL_POKEMON + '?offset=' + from + '&limit=' + to);
+  }
+
+  getAllPokemon(): Observable<Pokemon[]> {
+    return this.http.get<Pokemon[]>(this.URL_ALL_POKEMON);
   }
 
 
@@ -123,59 +129,59 @@ export class PokeServiceService {
       case 'mimikyu-disguised':
         return 'Mimikyu';
         break;
-      case 'aegislash':
-        return 'Aegislash-shield';
+      case 'Aegislash-shield':
+        return 'aegislash';
         break;
-      case 'giratina':
-        return 'Giratina-altered';
+      case 'Giratina-altered':
+        return 'giratina';
         break;
-      case 'shaymin':
-        return 'Shaymin-land';
+      case 'Shaymin-land':
+        return 'shaymin';
         break;
-      case 'lycanroc':
-        return 'Lycanroc-midday';
+      case 'Lycanroc-midday':
+        return 'lycanroc';
         break;
-      case 'meowstic':
-        return 'Meowstic-male';
+      case 'Meowstic-male':
+        return 'meowstic';
         break;
-      case 'meloetta':
-        return 'Meloetta-aria';
+      case 'Meloetta-aria':
+        return 'meloetta';
         break;
-      case 'pumpkaboo':
-        return 'pumpkaboo-average';
+      case 'pumpkaboo-average':
+        return 'pumpkaboo';
         break;
-      case 'gourgeist':
-        return 'gourgeist-average';
+      case 'gourgeist-average':
+        return 'gourgeist';
         break;
-      case 'keldeo':
-        return 'keldeo-ordinary';
+      case 'keldeo-ordinary':
+        return 'keldeo';
         break;
-      case 'oricorio':
-        return 'oricorio-baile';
+      case 'oricorio-baile':
+        return 'oricorio';
         break;
-      case 'darmanitan':
-        return 'darmanitan-standard';
+      case 'darmanitan-standard':
+        return 'darmanitan';
         break;
-      case 'minior':
-        return 'minior-red-meteor';
+      case 'minior-red-meteor':
+        return 'minior';
         break;
-      case 'basculin':
-        return 'basculin-red-striped';
+      case 'basculin-red-striped':
+        return 'basculin';
         break;
-      case 'wishiwashi':
-        return 'wishiwashi-solo';
+      case 'wishiwashi-solo':
+        return 'wishiwashi';
         break;
-      case 'wormadam':
-        return 'wormadam-plant';
+      case 'wormadam-plant':
+        return 'wormadam';
         break;
-      case 'thundurus':
-        return 'thundurus-incarnate';
+      case 'thundurus-incarnate':
+        return 'thundurus';
         break;
-      case 'tornadus':
-        return 'tornadus-incarnate';
+      case 'tornadus-incarnate':
+        return 'tornadus';
         break;
-      case 'landorus':
-        return 'landorus-incarnate';
+      case 'landorus-incarnate':
+        return 'landorus';
         break;
       default:
         return name;

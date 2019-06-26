@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokeServiceService } from '../../../services/poke-service.service';
 import { HttpClient} from '@angular/common/http';
 import {Pokemon} from '../../../models/Pokemon';
+import {SelectItem} from 'primeng/api';
 
 
 @Component({
@@ -16,75 +17,69 @@ export class PokeDataComponent implements OnInit {
   public pokemonFrom: number;
   public pokemonTo: number;
 
+  //Primeng
+  sortKey: string;
+  sortField: string;
+  sortOrder: number;
+  sortOptions: SelectItem[];
 
   constructor(
     private http: HttpClient,
     private pokeService: PokeServiceService
   ) {
     this.pokemonList = [];
-    this.nPokeRows = 8;
+    this.nPokeRows = 10;
     this.pokemonFrom = 0;
     this.pokemonTo = 20;
   }
 
   ngOnInit(): void {
+    this.sortOptions = [
+      {label: 'Más votados', value: '!votes'},
+      {label: 'Menos votados', value: 'votes'},
+      {label: 'Alfabético', value: 'name'},
+      {label: 'Inverso', value: '!name'}
+    ]
     this.loadPokemons();
   }
 
-  loadData(event) {
-    let pokemonText: string[];
-    this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'})
-      .subscribe(data => {
-        pokemonText = data.toString().split('\n');
-        const self = this;
-        pokemonText.slice(this.pokemonFrom, (this.pokemonTo + 1)).forEach(function(pokemonLine) {
-          const pokeStats = pokemonLine.split(',');
-          let pokemon: Pokemon;
-          const name = pokeStats[0];
-          if (name !== 'Pokemon') {
-            const votes = pokeStats[1];
+  onSortChange(event) {
+    let value = event.value;
 
-            const rank = pokeStats[2];
-
-            self.pokeService.getPokemonByName(name).subscribe((result => {
-              pokemon = result;
-              pokemon.votes = +votes;
-              pokemon.rank = +rank;
-              self.pokemonList = [...self.pokemonList, pokemon];
-              console.log(self.pokemonList.length);
-            }));
-          }
-        });
-
-      });
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    } else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
+
   loadPokemons() {
-    let pokemonText: string[];
-    this.http.get('../../assets/Files/PokeData.txt', {responseType: 'text'})
-      .subscribe(data => {
-      pokemonText = data.toString().split('\n');
-      const self = this;
-      pokemonText.slice(this.pokemonFrom, (this.pokemonTo + 1)).forEach(function(pokemonLine) {
-        const pokeStats = pokemonLine.split(',');
-          let pokemon: Pokemon;
-          const name = pokeStats[0];
-          if (name !== 'Pokemon') {
-            const votes = pokeStats[1];
+    this.pokeService.getAllPokemon()
+      .subscribe((data => {
+        this.pokemonList = data;
+        this.pokemonList = this.setDefaultData(this.pokemonList);
+      }));
 
-            const rank = pokeStats[2];
-
-            self.pokeService.getPokemonByName(name).subscribe((result => {
-              pokemon = result;
-              pokemon.votes = +votes;
-              pokemon.rank = +rank;
-              self.pokemonList = [...self.pokemonList, pokemon];
-              console.log(self.pokemonList.length);
-            }));
-          }
-      });
-
-    });
   }
 
-
+  setDefaultData(list: Pokemon[]){
+    let spriteDefaultString = './src/assets/Img/defaultSprite.png';
+    for(let i = 0; i < list.length; i++) {
+      if(list[i].sprites.front_default === null){
+        list[i].sprites.front_default = spriteDefaultString;
+      }
+      if(list[i].sprites.back_default === null){
+        list[i].sprites.back_default = spriteDefaultString;
+      }
+      if(list[i].sprites.front_shiny === null){
+        list[i].sprites.front_shiny = spriteDefaultString;
+      }
+      if(list[i].sprites.back_shiny === null){
+        list[i].sprites.back_shiny = spriteDefaultString;
+      }
+    }
+    return list;
+  }
 }
