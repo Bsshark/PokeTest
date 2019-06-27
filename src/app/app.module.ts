@@ -24,7 +24,6 @@ import { PokeDataComponent } from './components/poke-data/poke-data.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

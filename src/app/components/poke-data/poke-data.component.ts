@@ -3,6 +3,7 @@ import { PokeServiceService } from '../../../services/poke-service.service';
 import { HttpClient} from '@angular/common/http';
 import {Pokemon} from '../../../models/Pokemon';
 import {SelectItem} from 'primeng/api';
+import {FlavorTextEntries} from '../../../models/Flavor_Text_Entries';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class PokeDataComponent implements OnInit {
   sortField: string;
   sortOrder: number;
   sortOptions: SelectItem[];
+  langDesc: FlavorTextEntries;
 
   constructor(
     private http: HttpClient,
@@ -81,5 +83,12 @@ export class PokeDataComponent implements OnInit {
       }
     }
     return list;
+  }
+
+  updateData() {
+    for(let i = 0; i < this.pokemonList.length; i++){
+      this.langDesc = this.pokemonList[i].pokemonSpecies.flavor_text_entries.find(x => x.language.name === 'es');
+    }
+
   }
 }

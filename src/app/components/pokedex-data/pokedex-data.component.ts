@@ -34,7 +34,7 @@ export class PokedexDataComponent implements OnInit {
   }
 
   updateData() {
-    this.langDesc = this.pokemon.pokemonSpecies.flavor_text_entries.find(x => x.language.name === 'es');
+    this.langDesc = this.pokemon.pokemonSpecies.flavor_text_entries.find(x => x.language.name === 'fr');
   }
 
 

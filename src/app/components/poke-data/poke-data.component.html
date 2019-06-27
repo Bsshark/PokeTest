@@ -8,12 +8,15 @@
     </div>
   </div>
   <div class="ui-g-12">
-    <p-dataView [value]="pokemonList" [paginator]="true" [rows]="nPokeRows" [pageLinks]="5" [alwaysShowPaginator]="true" [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-dataView #dv filterBy="name" [value]="pokemonList" [paginator]="true" [rows]="nPokeRows" [pageLinks]="5" [alwaysShowPaginator]="true" [sortField]="sortField" [sortOrder]="sortOrder">
       <p-header>
         <div class="ui-helper-clearfix">
           <div class="ui-g">
             <div class="ui-g-12 ui-md-4">
               <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Ordenar por" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4">
+              <input type="search" pInputText placeholder="Buscar un pokemon" (keyup)="dv.filter($event.target.value)">
             </div>
             <div class="ui-g-6 ui-md-4" style="text-align:right">
               <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -23,21 +26,37 @@
       </p-header>
       <ng-template let-pokemon pTemplate="listItem">
         <div class="ui-g">
-          <div class="ui-g-12">
-            <div class="ui-g-12 ui-md-4">{{pokemon.name | capitalize}}</div>
-            <div class="ui-g-8 ui-md-8"></div>
+          <div class="ui-g-1"></div>
+          <div class="ui-g-10">
+            <p-fieldset legend="{{pokemon.name | capitalize}}">
+              <div class="ui-g-12 ui-md-4">
+                <img class="pokeSpriteDataview" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
+              </div>
+              <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-8">
+                  <b>Ranking: </b> {{pokemon.rank}}
+                </div>
+                <div class="ui-g-12 ui-md-8">
+                  <b>Votos: </b> {{pokemon.votes}}
+                </div>
+              </div>
+              <div class="ui-g-12 ui-md-5">
+                <div class="ui-g-6 pokeDesc">
+                  <p>{{ langDesc.flavor_text }}</p>
+                </div>
+              </div>
+
+
+            </p-fieldset>
+            <!--<div class="ui-g-12 ui-md-4">{{pokemon.name | capitalize}}</div>
+            <div class="ui-g-8 ui-md-8"></div>-->
           </div>
-          <div class="ui-g-12 ui-md-4">
-            <img class="pokeSprite" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
-          </div>
-          <div class="ui-g-12 ui-md-8">
-            <b>Votos: </b> {{pokemon.votes}}
-          </div>
+
         </div>
       </ng-template>
       <ng-template let-pokemon pTemplate="gridItem">
         <div class="ui-g-12 ui-md-3">
-          <img class="pokeSprite" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
+          <img class="pokeSpriteDataview" [src]="pokemon.sprites.front_default" alt="{{pokemon.name}}Sprite" />
         </div>
       </ng-template>
     </p-dataView>
