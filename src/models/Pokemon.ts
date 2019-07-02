@@ -1,5 +1,6 @@
 import { Sprite } from 'src/models/Sprite';
 import { PokemonSpecies } from './Pokemon_Species';
+import { Region } from './Region';
 
 export class Pokemon {
     id: number;
@@ -10,4 +11,5 @@ export class Pokemon {
     pokemonSpecies: PokemonSpecies;
     votes: number;
     rank: number;
+    region: Region;
 }
