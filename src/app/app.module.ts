@@ -22,6 +22,7 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { PokedexDataComponent } from './components/pokedex-data/pokedex-data.component';
 import { PokeDataComponent } from './components/poke-data/poke-data.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TabViewModule } from 'primeng/primeng';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     ChartModule,
     DataViewModule,
-    PaginatorModule
+    PaginatorModule,
+    TabViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
