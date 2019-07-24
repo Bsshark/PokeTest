@@ -1,8 +1,7 @@
 import { Sprite } from 'src/models/Sprite';
 import { PokemonSpecies } from './Pokemon_Species';
 import { Region } from './Region';
-
-export class Pokemon {
+import { Types } from './Types';export class Pokemon {
     id: number;
     name: string;
     weight: number;
@@ -12,4 +11,5 @@ export class Pokemon {
     votes: number;
     rank: number;
     region: Region;
+    types: Types;
 }

@@ -68,8 +68,11 @@
     <div class="ui-g-10 ui-md-10">
       <div class="ui-g-12">
         <p-tabView>
-          <p-tabPanel header="Por región">
+          <p-tabPanel header="Media de votos por Región">
             <p-chart type="pie" [data]="dataByRegion"></p-chart>
+          </p-tabPanel>
+          <p-tabPanel header="Media de votos por Tipo">
+            <p-chart type="pie" [data]="dataByType"></p-chart>
           </p-tabPanel>
         </p-tabView>
       </div>

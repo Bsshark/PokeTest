@@ -3,4 +3,5 @@ export class Region {
   name_es: string;
   from: number;
   to: number;
+  id: number;
 }

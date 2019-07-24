@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pokemon } from '../models/Pokemon';
 import { PokemonSpecies } from '../models/Pokemon_Species';
 import {Region} from '../models/Region';
+import { forkJoin } from 'rxjs';
 
 
 
@@ -54,6 +55,13 @@ export class PokeServiceService {
 
   getAllRegions(): Observable<Region[]> {
     return this.http.get<Region[]>(this.URL_ALL_REGIONS);
+  }
+
+  getAllPokemonAndAllRegions(): Observable<any[]> {
+    let pokemonList = this.http.get<Pokemon[]>(this.URL_ALL_POKEMON);
+    let regionList = this.http.get<Region[]>(this.URL_ALL_REGIONS);
+
+    return forkJoin([pokemonList, regionList]);
   }
 
 

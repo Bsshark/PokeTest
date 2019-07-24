@@ -21,6 +21,7 @@ export class PokeDataComponent implements OnInit {
 
   //Data Chart
   dataByRegion: any;
+  dataByType: any;
   avgPerRegion: RegionChartModel[];
   pointsPerRegion: number[];
 
@@ -40,8 +41,7 @@ export class PokeDataComponent implements OnInit {
     this.pokemonFrom = 0;
     this.pokemonTo = 20;
     this.avgPerRegion = [];
-    this.loadPokemons();
-    this.loadRegions();
+    this.pointsPerRegion = [];
   }
 
   ngOnInit(): void {
@@ -49,9 +49,9 @@ export class PokeDataComponent implements OnInit {
       {label: 'Más votados', value: '!votes'},
       {label: 'Menos votados', value: 'votes'},
       {label: 'Alfabético', value: 'name'}
-    ]
+    ];
+    this.loadAll();
 
-    this.getAvgVotes();
   }
 
   onSortChange(event) {
@@ -66,12 +66,9 @@ export class PokeDataComponent implements OnInit {
     }
   }
 
+
   loadPokemons() {
-    this.pokeService.getAllPokemon()
-      .subscribe((data => {
-        this.pokemonList = data;
-        this.pokemonList = this.setDefaultData(this.pokemonList);
-      }));
+      this.pokemonList = this.setDefaultData(this.pokemonList);
   }
 
   setDefaultData(list: Pokemon[]){
@@ -99,45 +96,57 @@ export class PokeDataComponent implements OnInit {
     }
   }
 
+  loadAll() {
+    this.pokeService.getAllPokemonAndAllRegions().subscribe(responseList => {
+      this.pokemonList = responseList[0];
+      this.regionList = responseList[1];
+
+      this.loadPokemons();
+      this.loadRegions();
+      this.getAvgVotes();
+
+    });
+  }
+
   //Chart data
   loadRegions() {
-    this.pokeService.getAllRegions()
-      .subscribe((data => {
-        this.regionList = data;
-        const names = [];
+    const names = [];
 
-        for (let i = 0; i < this.regionList.length; i++) {
-          names.push(this.regionList[i].name_es);
-        }
-        this.dataByRegion = {
-          labels: names,
-          datasets: [
-            {
-              data: this.pointsPerRegion,
-              backgroundColor: [
-                "#003f5c",
-                "#374c80",
-                "#7a5195",
-                "#bc5090",
-                "#ef5675",
-                "#ff764a",
-                "#ffa600"
-              ]
-            }
+    for (let i = 0; i < this.regionList.length; i++) {
+      names.push(this.regionList[i].name_es);
+    }
+    this.dataByRegion = {
+      labels: names,
+      datasets: [
+        {
+          data: this.pointsPerRegion,
+          backgroundColor: [
+            "#003f5c",
+            "#374c80",
+            "#7a5195",
+            "#bc5090",
+            "#ef5675",
+            "#ff764a",
+            "#ffa600"
           ]
-        };
-      }));
+        }
+      ]
+    };
+
+  }
+  loadTypes() {
 
   }
 
   getAvgVotes() {
+    console.log(this.regionList.length + ' | ' + this.pokemonList.length);
     for (let i = 0; i < this.regionList.length; i++) {
       let avgVotesInRegion = 0;
       let nPokemonInRegion = 0;
       const currentRegion = this.regionList[i];
       for (let j = 0; j < this.pokemonList.length; j++) {
-        const currentPokemon = this.pokemonList[i];
-        if (currentPokemon.region.name_es === currentRegion.name_es) {
+        const currentPokemon = this.pokemonList[j];
+        if (currentPokemon.region_id === currentRegion.id) {
           nPokemonInRegion++;
           avgVotesInRegion += currentPokemon.votes;
         }
@@ -149,7 +158,7 @@ export class PokeDataComponent implements OnInit {
         avgVotes: avgVotesInRegion
       }
       this.avgPerRegion.push(newRegion);
-      this.pointsPerRegion.push(this.avgPerRegion[i].avgVotes);
+      this.pointsPerRegion.push(+this.avgPerRegion[i].avgVotes.toFixed(2));
     }
   }
 }
