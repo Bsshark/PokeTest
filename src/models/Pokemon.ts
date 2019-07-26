@@ -10,6 +10,7 @@ import { Types } from './Types';export class Pokemon {
     pokemonSpecies: PokemonSpecies;
     votes: number;
     rank: number;
+    region_id: number;
     region: Region;
-    types: Types;
+    types: Types[];
 }

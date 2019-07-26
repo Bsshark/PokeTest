@@ -69,6 +69,13 @@ export class PokeDataComponent implements OnInit {
 
   loadPokemons() {
       this.pokemonList = this.setDefaultData(this.pokemonList);
+      //Set regions
+    for (let i = 0; i < this.pokemonList.length; i++) {
+      const currentPokemon = this.pokemonList[i];
+
+      currentPokemon.region = this.regionList[currentPokemon.region_id];
+
+    }
   }
 
   setDefaultData(list: Pokemon[]){
