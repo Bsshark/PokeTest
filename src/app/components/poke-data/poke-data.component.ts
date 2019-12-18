@@ -146,7 +146,6 @@ export class PokeDataComponent implements OnInit {
   }
 
   getAvgVotes() {
-    console.log(this.regionList.length + ' | ' + this.pokemonList.length);
     for (let i = 0; i < this.regionList.length; i++) {
       let avgVotesInRegion = 0;
       let nPokemonInRegion = 0;
@@ -157,6 +156,7 @@ export class PokeDataComponent implements OnInit {
           nPokemonInRegion++;
           avgVotesInRegion += currentPokemon.votes;
         }
+
       }
       avgVotesInRegion = avgVotesInRegion / nPokemonInRegion;
       const newRegion: RegionChartModel = {
